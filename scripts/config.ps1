@@ -1,5 +1,5 @@
 # Configuracion compartida de scripts (NO versionar secretos aqui)
-$script:SubscriptionId = "b497fd69-266c-46a9-b55b-8be0cd579667"
+$script:SubscriptionId = "7664be55-774e-45fd-a02c-40627b5a7a58"
 $script:TenantId       = "20f4acc9-f9f2-4ee9-b614-bc33742ece36"
 $script:Location       = "East US 2"
 $script:Environment    = "dev"
