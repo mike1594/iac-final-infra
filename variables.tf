@@ -23,7 +23,7 @@ variable "environment" {
 variable "prefix" {
   description = "Prefijo para la nomenclatura de recursos"
   type        = string
-  default     = "iac-final"
+  default     = "joe-meza-iac"
 }
 
 variable "suffix" {

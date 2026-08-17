@@ -1,8 +1,9 @@
 data "azurerm_client_config" "current" {}
 
 locals {
-  rg_name = "rg-${var.prefix}-${var.environment}-eastus2-${var.suffix}"
-  ca_name = "ca-${var.prefix}-app-${var.environment}-eastus2-${var.suffix}"
+  location_short = "eus2"
+  rg_name        = "rg-${var.prefix}-${var.environment}-${local.location_short}-${var.suffix}"
+  ca_name        = "ca-${var.prefix}-app-${var.environment}-${local.location_short}-${var.suffix}"
 }
 
 resource "azurerm_resource_group" "this" {
@@ -12,7 +13,7 @@ resource "azurerm_resource_group" "this" {
 }
 
 resource "azurerm_log_analytics_workspace" "this" {
-  name                = "law-${var.prefix}-${var.environment}-eastus2-${var.suffix}"
+  name                = "law-${var.prefix}-${var.environment}-${local.location_short}-${var.suffix}"
   location            = azurerm_resource_group.this.location
   resource_group_name = azurerm_resource_group.this.name
   sku                 = "PerGB2018"
@@ -20,7 +21,7 @@ resource "azurerm_log_analytics_workspace" "this" {
 }
 
 resource "azurerm_container_app_environment" "this" {
-  name                       = "cae-${var.prefix}-${var.environment}-eastus2-${var.suffix}"
+  name                       = "cae-${var.prefix}-${var.environment}-${local.location_short}-${var.suffix}"
   location                   = azurerm_resource_group.this.location
   resource_group_name        = azurerm_resource_group.this.name
   log_analytics_workspace_id = azurerm_log_analytics_workspace.this.id
@@ -28,7 +29,7 @@ resource "azurerm_container_app_environment" "this" {
 }
 
 resource "azurerm_user_assigned_identity" "this" {
-  name                = "id-${var.prefix}-app-${var.environment}-eastus2-${var.suffix}"
+  name                = "id-${var.prefix}-app-${var.environment}-${local.location_short}-${var.suffix}"
   location            = azurerm_resource_group.this.location
   resource_group_name = azurerm_resource_group.this.name
   tags                = var.tags
@@ -49,6 +50,8 @@ resource "azurerm_key_vault_secret" "app_secret" {
   name         = var.secret_name
   value        = var.secret_value
   key_vault_id = azurerm_key_vault.this.id
+
+  depends_on = [azurerm_role_assignment.deployer_kv_admin]
 }
 
 resource "azurerm_role_assignment" "identity_kv_secrets_user" {
@@ -108,11 +111,5 @@ resource "azurerm_container_app" "this" {
       latest_revision = true
       percentage      = 100
     }
-  }
-
-  lifecycle {
-    ignore_changes = [
-      template[0].container[0].env,
-    ]
   }
 }

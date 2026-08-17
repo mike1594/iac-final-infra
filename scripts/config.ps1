@@ -3,12 +3,12 @@ $script:SubscriptionId = "b497fd69-266c-46a9-b55b-8be0cd579667"
 $script:TenantId       = "20f4acc9-f9f2-4ee9-b614-bc33742ece36"
 $script:Location       = "East US 2"
 $script:Environment    = "dev"
-$script:Prefix         = "iac-final"
+$script:Prefix         = "joe-meza-iac"
 $script:Suffix         = "001"
 
 # Storage remoto del estado de Terraform
-$script:StateRG          = "rg-iac-final-state-eastus2-001"
-$script:StateStorageAcct = "stiacfinaltfstate001"
+$script:StateRG          = "rg-joe-meza-iac-state-eus2-001"
+$script:StateStorageAcct = "stjoemezaiacstate001"
 $script:StateContainer   = "tfstate"
 $script:StateKey         = "iac-final-app.terraform.tfstate"
 

@@ -8,7 +8,7 @@ flowchart LR
     D --> E["Gatillo: push a main / workflow_dispatch"]
     E --> F["Terraform init<br/>(backend remoto Azure Storage)"]
     F --> G["Terraform apply<br/>(revision Single, nueva imagen)"]
-    G --> H["Azure Container App<br/>(ca-iac-final-app-dev-eastus2-001)"]
+    G --> H["Azure Container App<br/>(ca-joe-meza-iac-app-dev-eus2-001)"]
     H --> I["Verificacion<br/>curl /hello y /secreto"]
 ```
 

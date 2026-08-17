@@ -6,14 +6,14 @@ Terraform que despliega un microservicio en **Azure Container Apps** con secreto
 
 | Recurso | Nombre |
 |---|---|
-| Resource Group | `rg-iac-final-dev-eastus2-001` |
-| Log Analytics Workspace | `law-iac-final-dev-eastus2-001` |
-| Container App Environment | `cae-iac-final-dev-eastus2-001` |
-| Container App | `ca-iac-final-app-dev-eastus2-001` |
-| User Assigned Identity | `id-iac-final-app-dev-eastus2-001` |
-| Key Vault | `kv-iac-final-dev-001` |
+| Resource Group | `rg-joe-meza-iac-dev-eus2-001` |
+| Log Analytics Workspace | `law-joe-meza-iac-dev-eus2-001` |
+| Container App Environment | `cae-joe-meza-iac-dev-eus2-001` |
+| Container App | `ca-joe-meza-iac-app-dev-eus2-001` |
+| User Assigned Identity | `id-joe-meza-iac-app-dev-eus2-001` |
+| Key Vault | `kv-joe-meza-iac-dev-001` |
 | Key Vault Secret | `app-secret` |
-| Storage Account (estado remoto) | `stiacfinaltfstate001` |
+| Storage Account (estado remoto) | `stjoemezaiacstate001` |
 
 ## Estructura
 
@@ -54,8 +54,8 @@ infraestructura/
 
 ```powershell
 terraform init `
-  -backend-config="resource_group_name=rg-iac-final-state-eastus2-001" `
-  -backend-config="storage_account_name=stiacfinaltfstate001" `
+  -backend-config="resource_group_name=rg-joe-meza-iac-state-eus2-001" `
+  -backend-config="storage_account_name=stjoemezaiacstate001" `
   -backend-config="container_name=tfstate" `
   -backend-config="key=iac-final-app.terraform.tfstate"
 ```

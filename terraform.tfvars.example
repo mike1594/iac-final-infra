@@ -2,7 +2,7 @@ subscription_id = "b497fd69-266c-46a9-b55b-8be0cd579667"
 tenant_id       = "20f4acc9-f9f2-4ee9-b614-bc33742ece36"
 location        = "East US 2"
 environment     = "dev"
-prefix          = "iac-final"
+prefix          = "joe-meza-iac"
 suffix          = "001"
 
 image_name = "jmeza17/iac-final-app"
