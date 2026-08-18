@@ -30,5 +30,15 @@ Invoke-AzCmd "az storage account create --name `"$StateStorageAcct`" --resource-
 
 Invoke-AzCmd "az storage container create --name `"$StateContainer`" --account-name `"$StateStorageAcct`" --auth-mode login"
 
+$StorageScope = az storage account show --name "$StateStorageAcct" --resource-group "$StateRG" --query id -o tsv
+$CurrentUser = az ad signed-in-user show --query userPrincipalName -o tsv
+$ExistingAssignment = az role assignment list --assignee "$CurrentUser" --role "Storage Blob Data Contributor" --scope "$StorageScope" --query "length(@)" -o tsv
+if ($ExistingAssignment -eq "0") {
+    Invoke-AzCmd "az role assignment create --assignee `"$CurrentUser`" --role `"Storage Blob Data Contributor`" --scope `"$StorageScope`""
+}
+else {
+    Write-Host "Permiso Storage Blob Data Contributor ya existe para $CurrentUser" -ForegroundColor Green
+}
+
 Write-Host "== Backend listo. Storage: $StateStorageAcct/$StateContainer ==" -ForegroundColor Green
 Write-Host "Inicializar con: terraform init -backend-config=`"resource_group_name=$StateRG`" -backend-config=`"storage_account_name=$StateStorageAcct`" -backend-config=`"container_name=$StateContainer`" -backend-config=`"key=$StateKey`""
