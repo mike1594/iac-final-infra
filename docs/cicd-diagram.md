@@ -1,5 +1,65 @@
 # Diagrama de flujo CI/CD
 
+## Diagrama visual
+
+<table>
+  <tr>
+    <td align="center" width="130">
+      <img src="https://cdn.simpleicons.org/github/181717" width="58" alt="GitHub"/><br/>
+      <strong>GitHub</strong><br/>
+      <sub>mike1594/iac-final-app</sub>
+    </td>
+    <td align="center">&rarr;<br/><sub>push a main</sub></td>
+    <td align="center" width="130">
+      <img src="https://cdn.simpleicons.org/githubactions/2088FF" width="58" alt="GitHub Actions"/><br/>
+      <strong>GitHub Actions</strong><br/>
+      <sub>workflow_dispatch / push</sub>
+    </td>
+    <td align="center">&rarr;<br/><sub>build</sub></td>
+    <td align="center" width="130">
+      <img src="https://cdn.simpleicons.org/docker/2496ED" width="58" alt="Docker"/><br/>
+      <strong>Docker Build</strong><br/>
+      <sub>linux/amd64</sub>
+    </td>
+    <td align="center">&rarr;<br/><sub>push tag</sub></td>
+    <td align="center" width="130">
+      <img src="https://cdn.simpleicons.org/docker/2496ED" width="58" alt="DockerHub"/><br/>
+      <strong>DockerHub</strong><br/>
+      <sub>jmeza17/iac-final-app</sub>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="7" align="center"><br/>&darr;<br/><sub>CD: script opcional <code>deploy.ps1</code></sub></td>
+  </tr>
+  <tr>
+    <td align="center" width="130">
+      <img src="https://cdn.simpleicons.org/terraform/844FBA" width="58" alt="Terraform"/><br/>
+      <strong>Terraform</strong><br/>
+      <sub>init / apply</sub>
+    </td>
+    <td align="center">&rarr;<br/><sub>estado remoto</sub></td>
+    <td align="center" width="130">
+      <img src="https://cdn.simpleicons.org/microsoftazure/0078D4" width="58" alt="Azure Storage"/><br/>
+      <strong>Azure Storage</strong><br/>
+      <sub>tfstate</sub>
+    </td>
+    <td align="center">&rarr;<br/><sub>secreto</sub></td>
+    <td align="center" width="130">
+      <img src="https://cdn.simpleicons.org/microsoftazure/0078D4" width="58" alt="Azure Key Vault"/><br/>
+      <strong>Key Vault</strong><br/>
+      <sub>APP_SECRET</sub>
+    </td>
+    <td align="center">&rarr;<br/><sub>deploy</sub></td>
+    <td align="center" width="130">
+      <img src="https://cdn.simpleicons.org/microsoftazure/0078D4" width="58" alt="Azure Container Apps"/><br/>
+      <strong>Container App</strong><br/>
+      <sub>/hello /secreto</sub>
+    </td>
+  </tr>
+</table>
+
+## Diagrama tecnico
+
 ```mermaid
 flowchart LR
     A["Git push a main<br/>(GitHub: mike1594/iac-final-app)"] --> B["GitHub Actions<br/>(.github/workflows/docker-publish.yml)"]
