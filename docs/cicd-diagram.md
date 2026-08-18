@@ -29,7 +29,7 @@
     </td>
   </tr>
   <tr>
-    <td colspan="7" align="center"><br/>&darr;<br/><sub>CD: script opcional <code>deploy.ps1</code></sub></td>
+    <td colspan="7" align="center"><br/>&darr;<br/><sub>CD: script de despliegue <code>deploy.ps1</code></sub></td>
   </tr>
   <tr>
     <td align="center" width="130">
@@ -39,19 +39,19 @@
     </td>
     <td align="center">&rarr;<br/><sub>estado remoto</sub></td>
     <td align="center" width="130">
-      <img src="https://cdn.simpleicons.org/microsoftazure/0078D4" width="58" alt="Azure Storage"/><br/>
+      <img src="https://raw.githubusercontent.com/TaleLearnCode/azure-architecture-icons/main/icons/storage/10086-icon-service-Storage-Accounts.svg" width="58" alt="Azure Storage Account"/><br/>
       <strong>Azure Storage</strong><br/>
       <sub>tfstate</sub>
     </td>
     <td align="center">&rarr;<br/><sub>secreto</sub></td>
     <td align="center" width="130">
-      <img src="https://cdn.simpleicons.org/microsoftazure/0078D4" width="58" alt="Azure Key Vault"/><br/>
+      <img src="https://raw.githubusercontent.com/TaleLearnCode/azure-architecture-icons/main/icons/security/10245-icon-service-Key-Vaults.svg" width="58" alt="Azure Key Vault"/><br/>
       <strong>Key Vault</strong><br/>
       <sub>APP_SECRET</sub>
     </td>
     <td align="center">&rarr;<br/><sub>deploy</sub></td>
     <td align="center" width="130">
-      <img src="https://cdn.simpleicons.org/microsoftazure/0078D4" width="58" alt="Azure Container Apps"/><br/>
+      <img src="https://raw.githubusercontent.com/TaleLearnCode/azure-architecture-icons/main/icons/other/02989-icon-service-Container-Apps-Environments.svg" width="58" alt="Azure Container Apps"/><br/>
       <strong>Container App</strong><br/>
       <sub>/hello /secreto</sub>
     </td>
@@ -82,10 +82,10 @@ flowchart LR
 
 ## Herramientas
 
-| Herramienta | Uso |
-|---|---|
-| GitHub + GitHub Actions | Repositorio y pipeline CI |
-| Docker + DockerHub | Containerizacion y registro publico de imagen |
-| Terraform (azurerm) | Infraestructura como codigo de Azure Container Apps |
-| Azure Key Vault | Secreto expuesto en `/secreto` |
-| Azure Storage | Backend remoto del estado de Terraform |
+| Herramienta             | Uso                                                 |
+| ----------------------- | --------------------------------------------------- |
+| GitHub + GitHub Actions | Repositorio y pipeline CI                           |
+| Docker + DockerHub      | Containerizacion y registro publico de imagen       |
+| Terraform (azurerm)     | Infraestructura como codigo de Azure Container Apps |
+| Azure Key Vault         | Secreto expuesto en `/secreto`                      |
+| Azure Storage           | Backend remoto del estado de Terraform              |
