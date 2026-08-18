@@ -52,7 +52,7 @@ if (-not $SkipTerraform) {
         if (-not $NoAutoApprove) { $Approval = @("-auto-approve") }
 
         Write-Host "== Terraform init ==" -ForegroundColor Green
-        terraform init -backend-config="resource_group_name=$StateRG" -backend-config="storage_account_name=$StateStorageAcct" -backend-config="container_name=$StateContainer" -backend-config="key=$StateKey"
+        terraform init -reconfigure -backend-config="resource_group_name=$StateRG" -backend-config="storage_account_name=$StateStorageAcct" -backend-config="container_name=$StateContainer" -backend-config="key=$StateKey"
         if ($LASTEXITCODE -ne 0) { throw "Fallo el terraform init" }
 
         Write-Host "== Terraform apply ==" -ForegroundColor Green
